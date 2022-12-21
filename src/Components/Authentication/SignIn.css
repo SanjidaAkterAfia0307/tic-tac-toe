@@ -1,0 +1,20 @@
+input {
+    /* width: 312px; */
+    height: 56px;
+    background: #F4F4F4;
+    border-radius: 8px;
+    padding: 20px 16px 16px;
+    margin-top: 12px;
+    margin-bottom: 16px;
+}
+
+.sub-btn{
+    width: 328px;
+    height: 56px;
+    margin: 73px 16px 14px 16px ;
+}
+.dis-sub-btn{
+    width: 328px;
+    height: 56px;
+    margin: 0px 16px 14px 16px ;
+}
