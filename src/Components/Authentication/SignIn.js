@@ -1,10 +1,13 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import { Context } from '../../Contexts/ContextProvider';
 import "./SignIn.css"
 
-const SignIn = ({ setIsSign, isSign }) => {
+const SignIn = () => {
     const [user, setUser] = useState(null)
+    const { setIsSign, isSign,setIsLoading }=useContext(Context)
     
     // console.log(user.name, user.userName, user.email, user.password)
     const cookies = new Cookies()
@@ -19,6 +22,7 @@ const SignIn = ({ setIsSign, isSign }) => {
             cookies.set("fullName", fullName);
             cookies.set("email", email);
             cookies.set("hashedPassword", hashedPassword);
+            setIsLoading(false)
             setIsSign(true)
 
         });
@@ -39,7 +43,7 @@ const SignIn = ({ setIsSign, isSign }) => {
                 <input onChange={(e) => { setUser({ ...user, email: e.target.value }) }} type="email" name="email" placeholder='Type your email here' className='block w-full ' />
                 <label htmlFor="password" className='text-sm font-bold '>Password</label>
                 <input onChange={(e) => { setUser({ ...user, password: e.target.value }) }} type="password" name="password" placeholder='Type your password here' className='block w-full mb-0 ' />
-
+                <p className='text-sm my-2'>Already have an account?<Link className='text-[#F2C94C]' to='/login'> Log In!</Link></p>
             </div>
 
             {
@@ -51,9 +55,9 @@ const SignIn = ({ setIsSign, isSign }) => {
                 </div>
             }
             <div className='flex justify-center items-center' >
-                <button onClick={signUp} className={isSign ? `bg-[#E0E0E0]  flex justify-center items-center rounded-lg dis-sub-btn  text-white` :` bg-[#F2C94C] flex justify-center items-center rounded-lg sub-btn`  } disabled={isSign}>
+                <Link to='/opponent' onClick={signUp} className={isSign ? `bg-[#E0E0E0]  flex justify-center items-center rounded-lg dis-sub-btn  text-white` :` bg-[#F2C94C] flex justify-center items-center rounded-lg sub-btn`  } disabled={isSign}>
                     <p className='text-white font-bold'>Register</p>
-                </button>
+                </Link>
             </div>
 
         </div>

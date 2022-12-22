@@ -18,3 +18,6 @@ input {
     height: 56px;
     margin: 0px 16px 14px 16px ;
 }
+.line{
+    line-height: 80px;
+}

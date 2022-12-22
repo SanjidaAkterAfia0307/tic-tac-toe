@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Bilbo&display=swap');
+
+.font{
+    font-family: 'Bilbo', cursive;
+}
+/* .area{
+    height: 100vh;
+} */
+
+.auth-btn{
+    width: 328px;
+    height: 56px;
+    /* margin-: 24px 16px 14px 16px ; */
+    
+}

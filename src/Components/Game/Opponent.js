@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { StreamChat } from 'stream-chat';
 import { Channel, useChatContext } from 'stream-chat-react';
+import { Context } from '../../Contexts/ContextProvider';
 import Game from './Game';
 
 const Opponent = () => {
     const [opponentEmail, setOpponentEmail] = useState("")
-
+    // const{client}=useContext(Context)
     const { client } = useChatContext();
+    
+    console.log(client)
     const [channel, setChannel] = useState(null);
     const [error, setError] = useState('');
     const createChannel = async () => {

@@ -4,6 +4,7 @@ import circle from '../../assests/Ellipse 1.png';
 import cross from '../../assests/Property 1=x.png';
 import { useChannelStateContext, useChatContext } from "stream-chat-react";
 import { Patterns } from './Patterns';
+import { Link } from 'react-router-dom';
 
 const GameField = ({ result, setResult }) => {
     const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
@@ -202,9 +203,9 @@ const GameField = ({ result, setResult }) => {
                 }
                 { (tie || won) &&
                     <div className='flex justify-center items-center'>
-                    <div className={`bg-[#F2C94C] flex justify-center items-center rounded-lg sub-btn`}>
+                    <Link to="/" className={`bg-[#F2C94C] flex justify-center items-center rounded-lg sub-btn`}>
                         <button className='text-white font-bold'>Start another game</button>
-                    </div>
+                    </Link>
                 </div>
                 }
             </div>

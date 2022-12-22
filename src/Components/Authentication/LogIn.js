@@ -1,11 +1,14 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie/cjs/Cookies';
+import { Context } from '../../Contexts/ContextProvider';
 
-const LogIn = ({setIsSign,isSign}) => {
+const LogIn = () => {
     const [username,setUserName]=useState("")
     const [password,setPassword]=useState("")
     const [error, setError] = useState("")
+    const {setIsSign,isSign,setIsLoading}=useContext(Context)
     const cookies=new Cookies()
    
     const logIn=(e)=>{axios.post("http://localhost:3001/login", {
@@ -24,6 +27,7 @@ const LogIn = ({setIsSign,isSign}) => {
         cookies.set("fullName",fullName);
         cookies.set("email", email);
         cookies.set("hashedPassword", hashedPassword);
+        setIsLoading(false)
        setIsSign(true)
       });
     };
@@ -44,7 +48,7 @@ const LogIn = ({setIsSign,isSign}) => {
                     setError("")
                      setPassword(e.target.value ) 
                      }} type="password" name="password" placeholder='Type your password here' className='block w-full mb-0 ' />
-
+                    <p className='text-sm my-2'>Don't have an account?<Link className='text-[#F2C94C]' to='/signin'> Create Now !</Link></p>
             </div>
             {
                 isSign &&
@@ -63,9 +67,9 @@ const LogIn = ({setIsSign,isSign}) => {
                 </div>
             }
             <div className='flex justify-center items-center'>
-                <div onClick={logIn} className={error || isSign ?`bg-[#E0E0E0] flex justify-center items-center rounded-lg dis-sub-btn` : `bg-[#F2C94C] flex justify-center items-center rounded-lg sub-btn`}>
+                <Link to='/opponent' onClick={logIn} className={error || isSign ?`bg-[#E0E0E0] flex justify-center items-center rounded-lg dis-sub-btn` : `bg-[#F2C94C] flex justify-center items-center rounded-lg sub-btn`}>
                     <button className='text-white font-bold'>Login</button>
-                </div>
+                </Link>
             </div>
 
         </div>
