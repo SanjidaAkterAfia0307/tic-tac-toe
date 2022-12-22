@@ -10,6 +10,7 @@ About The problems I have faced and explanation of my architectural choice:
 
 It was a little bit tough to create a multi-player game as I had no experienced of it.
 
-With my knowledge of firebase ,i found it difficult to create a channel or room to create multiplayer game.So ,I did some research and got to know about getstream api.So I picked it up to create amy authentication system .And for Database,as I have previous experienced ,so I choosed MongoDB.
+With my knowledge of firebase ,i found it difficult to create a channel or room to create multiplayer game.So ,I did some research and got to know about getstream api.So I picked it up to create amy authentication system .And for Database,as I have previous experienced ,so I choosed MongoDB.And it seemed perfect for me to use tailwindCSS to make this web design.
+
 
 
