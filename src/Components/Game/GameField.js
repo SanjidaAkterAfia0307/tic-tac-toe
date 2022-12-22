@@ -5,24 +5,28 @@ import cross from '../../assests/Property 1=x.png';
 import { useChannelStateContext, useChatContext } from "stream-chat-react";
 import { Patterns } from './Patterns';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const GameField = ({ result, setResult }) => {
+const GameField = ({ result, setResult ,id}) => {
     const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
     // const [submit, setSubmit] = useState(false);
     const [player, setPlayer] = useState("X");
+    const [winPlayer, setWinPlayer] = useState("");
     const [turn, setTurn] = useState("X");
     const [won, setWon] = useState("");
     const [winner, setWinner] = useState("");
     const [tie, setTie] = useState("");
     const { channel } = useChannelStateContext();
     const { client } = useChatContext();
+    let win;
+    console.log(channel)
 
     console.log(client.user)
 
     useEffect(() => {
         checkIfTie();
         checkWin();
-    }, [board]);
+    }, [board,winner]);
     const setSquare = async (square) => {
         console.log(player)
         console.log(turn)
@@ -61,6 +65,21 @@ const GameField = ({ result, setResult }) => {
                 setWon("won")
                 setWinner(board[currPattern[0]])
                 setResult({ winner: board[currPattern[0]], state: "won" });
+               
+                console.log(player)
+                console.log(winner)
+                if(winner === player){
+                     win=`You win`
+                     setWinPlayer("You")
+                }
+                else{
+                    win=`${channel._data.Opponent} win`
+                    setWinPlayer(channel._data.Opponent)
+                }
+                //  const win=   winner === player ? `You win` : `${channel._data.Opponent} win`
+                
+              axios.put(`http://localhost:3001/games/${id}`,{win,winPlayer})
+              .then(res=>console.log(res.data))
 
             }
         });
@@ -76,6 +95,10 @@ const GameField = ({ result, setResult }) => {
 
         if (filled) {
             setTie("tie")
+            win="It's a Draw"
+            console.log(tie,won)
+            axios.put(`http://localhost:3001/games/${id}`,{win})
+            .then(res=>console.log(res.data))
             setResult({ winner: "none", state: "tie" });
 
         }
@@ -114,7 +137,9 @@ const GameField = ({ result, setResult }) => {
 
             <div className='bg-[#FFE79E] mx-4'>
                 <div>
+                    
                     {
+                        
                         !tie && !won &&
                         <div className='flex justify-center items-center h-12 text-lg text-[#212121]'>
                             {

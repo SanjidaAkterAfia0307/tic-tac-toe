@@ -12,11 +12,15 @@ input {
     width: 328px;
     height: 56px;
     margin: 73px 16px 14px 16px ;
+    box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.16);
+
 }
 .dis-sub-btn{
     width: 328px;
     height: 56px;
     margin: 0px 16px 14px 16px ;
+    box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.16);
+
 }
 .line{
     line-height: 80px;

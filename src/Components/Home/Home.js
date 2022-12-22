@@ -1,18 +1,34 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import HomeWithoutAuth from './HomeWithoutAuth';
 import './Home.css';
 import HomeWithoutData from './HomeWithoutData';
 import { Context } from '../../Contexts/ContextProvider';
+import HomeWithData from './HomeWithData';
+import axios from 'axios';
 const Home = () => {
-    const { isSign } = useContext(Context)
+    const { isSign,client } = useContext(Context)
+    console.log(client)
+    const [cards, setCards] = useState([])
+    useEffect(() => {
+
+        axios.get(`http://localhost:3001/games/${client?.user?.email}`)
+            .then(data => setCards(data.data))
+    }, [])
     return (
         <div >
             {
-                isSign ?
-                    <HomeWithoutData></HomeWithoutData>
-                    :
+                isSign && cards.length!==0 &&
+                <HomeWithData></HomeWithData>
+                   
+            }
+            {
+                isSign &&  cards.length===0 &&
+                <HomeWithoutData></HomeWithoutData>
+            }
+            {
+                !isSign && 
 
-                    <HomeWithoutAuth></HomeWithoutAuth>
+                <HomeWithoutAuth></HomeWithoutAuth>
             }
         </div>
     );

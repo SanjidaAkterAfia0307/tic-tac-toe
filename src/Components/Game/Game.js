@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import GameField from './GameField';
 
-const Game = ({channel}) => {
+const Game = ({channel,id}) => {
     const [players, setPlayers] = useState(channel.state.watcher_count === 2);
     const [result, setResult] = useState({ winner: "none", state: "none" });
     
@@ -15,7 +15,7 @@ const Game = ({channel}) => {
 
     return (
         <div>
-            <GameField  result={result} setResult={setResult}></GameField>
+            <GameField  result={result} id={id}  setResult={setResult}></GameField>
         </div>
     );
 };

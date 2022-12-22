@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { StreamChat } from 'stream-chat';
 import { Channel, useChatContext } from 'stream-chat-react';
@@ -12,6 +13,7 @@ const Opponent = () => {
     console.log(client)
     const [channel, setChannel] = useState(null);
     const [error, setError] = useState('');
+    const [id, setId] = useState(Math.random);
     const createChannel = async () => {
         const response = await client.queryUsers({ email: { $eq: opponentEmail } });
         console.log(response)
@@ -24,13 +26,27 @@ const Opponent = () => {
 
         const newChannel = await client.channel("messaging", {
             members: [client.userID, response.users[0].id],
-            Opponent: response.users[0].name
+            Opponent: response.users[0].name,
         });
-
+        console.log(client)
+        // setId()
+        
         await newChannel.watch();
         setChannel(newChannel);
-
-        // console.log(channel)
+        console.log(channel)
+        
+        // post data to mongodb
+        const game={
+            userEmail:client.user.email,
+            userName:client.user.name,
+            Opponent:response.users[0].name,
+            turn:'',
+            state:'',
+            winner:'',
+            id:id
+        }
+        axios.post("http://localhost:3001/games", game)
+        .then(data=>console.log(data.data.insertedId)) 
     };
     return (
         <>
@@ -39,7 +55,7 @@ const Opponent = () => {
                 <Channel channel={channel}>
 
                     {/* <h1>Get Started</h1> */}
-                    <Game channel={channel} ></Game>
+                    <Game channel={channel} id={id} ></Game>
                 </Channel>
                 :
 

@@ -10,7 +10,7 @@ const ContextProvider = ({ children }) => {
 
     const cookies = new Cookies();
     const token = cookies.get("token");
-    const api_key = "3pmzbsccz3f3";
+    const api_key = process.env.REACT_APP_apiKey;
     const client = StreamChat.getInstance(api_key);
     const [isSign, setIsSign] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
