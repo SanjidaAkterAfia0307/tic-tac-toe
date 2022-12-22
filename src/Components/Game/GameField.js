@@ -78,7 +78,7 @@ const GameField = ({ result, setResult ,id}) => {
                 }
                 //  const win=   winner === player ? `You win` : `${channel._data.Opponent} win`
                 
-              axios.put(`http://localhost:3001/games/${id}`,{win,winPlayer})
+              axios.put(`https://server-seven-tau.vercel.app/games/${id}`,{win,winPlayer})
               .then(res=>console.log(res.data))
 
             }
@@ -97,7 +97,7 @@ const GameField = ({ result, setResult ,id}) => {
             setTie("tie")
             win="It's a Draw"
             console.log(tie,won)
-            axios.put(`http://localhost:3001/games/${id}`,{win})
+            axios.put(`https://server-seven-tau.vercel.app/games/${id}`,{win})
             .then(res=>console.log(res.data))
             setResult({ winner: "none", state: "tie" });
 

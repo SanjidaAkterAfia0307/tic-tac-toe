@@ -13,7 +13,7 @@ const SignIn = () => {
     const cookies = new Cookies()
 
     const signUp = (e) => {
-        axios.post("http://localhost:3001/signup", user).then((res) => {
+        axios.post("https://server-seven-tau.vercel.app/signup", user).then((res) => {
             const { token, userId, fullName, email, username, hashedPassword } =
                 res.data;
             cookies.set("token", token);

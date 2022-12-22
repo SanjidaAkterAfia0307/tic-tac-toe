@@ -11,7 +11,7 @@ const HomeWithData = () => {
     const [cards, setCards] = useState([])
     useEffect(() => {
 
-        axios.get(`http://localhost:3001/games/${client.user.email}`)
+        axios.get(`https://server-seven-tau.vercel.app/games/${client.user.email}`)
             .then(data => setCards(data.data))
     }, [])
     return (

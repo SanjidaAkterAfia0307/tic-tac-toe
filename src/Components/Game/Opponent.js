@@ -45,7 +45,7 @@ const Opponent = () => {
             winner:'',
             id:id
         }
-        axios.post("http://localhost:3001/games", game)
+        axios.post("https://server-seven-tau.vercel.app/games", game)
         .then(data=>console.log(data.data.insertedId)) 
     };
     return (

@@ -11,7 +11,7 @@ const LogIn = () => {
     const {setIsSign,isSign,setIsLoading}=useContext(Context)
     const cookies=new Cookies()
    
-    const logIn=(e)=>{axios.post("http://localhost:3001/login", {
+    const logIn=(e)=>{axios.post("https://server-seven-tau.vercel.app/login", {
       username,
       password,
     }).then((res) => {
